@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calm Down Karen — Complaint Handling Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dc;
+    --border2: #d5cfc4;
+    --text: #1a1714;
+    --text2: #6b6560;
+    --text3: #9b9590;
+    --accent: #c94a1f;
+    --accent-bg: #fdf1ec;
+    --accent-border: #f5c4a8;
+    --green: #2d7a4f;
+    --green-bg: #eef7f2;
+    --blue: #1a5fa8;
+    --blue-bg: #eef4fc;
+    --amber: #9a5c0a;
+    --amber-bg: #fef7eb;
+    --red-bg: #fdf2f2;
+    --red-text: #9a2020;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--text);
+  }
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: -2px;
+  }
+  .header-badge {
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1714 0%, #2d2520 100%);
+    color: white;
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f5a87a;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.15;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+  .hero-chips {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .chip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* PROGRESS DASHBOARD */
+  .dashboard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .dashboard-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dashboard-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .reset-btn {
+    font-size: 12px;
+    color: var(--text3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .reset-btn:hover { background: var(--surface2); }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .stat-card {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .prog-track {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .prog-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 5px;
+  }
+
+  /* TABS */
+  .tab-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text2);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tab-btn:hover { border-color: var(--border2); background: var(--surface2); }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .tab-count {
+    font-size: 11px;
+    background: rgba(255,255,255,0.25);
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+  .tab-btn:not(.active) .tab-count {
+    background: var(--surface2);
+    color: var(--text3);
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    font-size: 16px;
+  }
+  .search-input {
+    width: 100%;
+    padding: 10px 16px 10px 42px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border 0.18s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--text3); }
+
+  /* FILTER PILLS */
+  .filter-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .filter-pill {
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-pill:hover { border-color: var(--border2); }
+  .filter-pill.active { background: var(--text); color: white; border-color: var(--text); }
+
+  /* SCENARIO CARDS */
+  .scenario-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+  .card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+  .card.open { border-color: var(--accent); }
+  .card.viewed .card-num { background: var(--green-bg); color: var(--green); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .card-info { flex: 1; min-width: 0; }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .pills { display: flex; gap: 5px; flex-wrap: wrap; }
+  .pill {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .pill-type { background: var(--blue-bg); color: var(--blue); }
+  .pill-low { background: var(--green-bg); color: var(--green); }
+  .pill-medium { background: var(--amber-bg); color: var(--amber); }
+  .pill-high { background: var(--red-bg); color: var(--red-text); }
+  .card-chevron {
+    color: var(--text3);
+    font-size: 18px;
+    transition: transform 0.22s;
+    flex-shrink: 0;
+  }
+  .card.open .card-chevron { transform: rotate(180deg); }
+
+  /* CARD BODY */
+  .card-body {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 16px;
+  }
+  .card.open .card-body { display: block; }
+
+  .section { margin-bottom: 14px; }
+  .section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label.karen { color: var(--red-text); }
+  .section-label.response { color: var(--green); }
+  .section-label.policy { color: var(--blue); }
+  .section-label.tips { color: var(--amber); }
+
+  .karen-box {
+    background: var(--red-bg);
+    border-left: 3px solid #e24b4b;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #4a1a1a;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .response-box {
+    background: var(--green-bg);
+    border-left: 3px solid #3a9e62;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #173404;
+    line-height: 1.7;
+  }
+  .policy-box {
+    background: var(--blue-bg);
+    border-left: 3px solid #3a8add;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #042c53;
+    line-height: 1.7;
+  }
+  .tips-list { list-style: none; }
+  .tips-list li {
+    font-size: 13px;
+    color: var(--text2);
+    padding: 4px 0 4px 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tips-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text3);
+    font-size: 14px;
+  }
+  .empty-icon { font-size: 36px; margin-bottom: 10px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .hero { padding: 2rem 1rem 1.5rem; }
+    .tab-btn { font-size: 13px; padding: 9px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">😤</div>
+      <div>
+        <div class="logo-text">Calm Down, Karen</div>
+        <div class="logo-sub">Complaint Handling Training</div>
+      </div>
+    </div>
+    <div class="header-badge">Training Simulation</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Service Excellence Program</div>
+  <h1>Calm Down, Karen 😤</h1>
+  <p class="hero-sub">Master complaint handling for Airline and Food &amp; Beverage operations. Study real scenarios, model responses, and policy references.</p>
+  <div class="hero-chips">
+    <span class="chip">✈️ 20 Airline Scenarios</span>
+    <span class="chip">🍽️ 20 F&amp;B Scenarios</span>
+    <span class="chip">📋 Policy References</span>
+    <span class="chip">💡 Pro Tips</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+    <div class="dashboard-top">
+      <div class="dashboard-title">📊 Your Progress</div>
+      <button class="reset-btn" onclick="resetProgress()">↺ Reset</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-total">20</div>
+        <div class="stat-label">Scenarios</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-viewed">0</div>
+        <div class="stat-label">Reviewed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-remaining">20</div>
+        <div class="stat-label">Remaining</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-pct">0%</div>
+        <div class="stat-label">Complete</div>
+      </div>
+    </div>
+    <div class="prog-track">
+      <div class="prog-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+    <div class="prog-label">
+      <span id="prog-label-left">0 of 20 reviewed</span>
+      <span id="prog-label-right">0%</span>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tab-row">
+    <button class="tab-btn active" id="tab-airline" onclick="switchTab('airline')">
+      ✈️ Airline <span class="tab-count">20</span>
+    </button>
+    <button class="tab-btn" id="tab-fb" onclick="switchTab('fb')">
+      🍽️ Food &amp; Beverage <span class="tab-count">20</span>
+    </button>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" type="text" id="search-input" placeholder="Search scenarios, types, or keywords..." oninput="handleSearch(this.value)" />
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filter-row" id="filter-row">
+    <button class="filter-pill active" onclick="setFilter('all', this)">All</button>
+    <button class="filter-pill" onclick="setFilter('Low', this)">🟢 Low</button>
+    <button class="filter-pill" onclick="setFilter('Medium', this)">🟡 Medium</button>
+    <button class="filter-pill" onclick="setFilter('High', this)">🔴 High</button>
+  </div>
+
+  <!-- SCENARIO LIST -->
+  <div class="scenario-list" id="scenario-list"></div>
+
+</div>
+
+<footer>
+  Calm Down Karen — Complaint Handling Training &nbsp;|&nbsp; For internal training use only &nbsp;|&nbsp; 40 Scenarios · Airline &amp; F&amp;B
+</footer>
+
+<script>
+const airline = [
+  { title:"Delayed Flight — No Updates", type:"Ground", difficulty:"Medium", complaint:"My flight has been delayed for 3 hours and nobody is telling us anything! This is absolutely unacceptable. I'm going to miss my connecting flight!", response:"I completely understand how stressful this is, especially with a connection at stake. Let me pull up your booking right now. Our flight to [destination] is experiencing a [reason] delay. I'm going to check you for rebooking on the next available flight at no charge, and I'd like to issue you a meal voucher for the wait. I'll personally monitor your rebooking and keep you updated every 30 minutes.", policy:"IATA Resolution 735d & Airline Delay Policy: Carriers must provide regular status updates (minimum every 30 min for ground delays). Passengers missing connections due to airline-caused delays are entitled to: complimentary rebooking on next available flight, meal voucher if delay exceeds 3 hours, hotel accommodation if overnight.", tips:["Use HEAR: Hear, Empathize, Apologize, Resolve","Never say 'I don't know' without offering to find out","Offer proactive rebooking before the passenger asks"] },
+  { title:"Lost Luggage", type:"Ground", difficulty:"High", complaint:"My bags are GONE. I watched everyone else get their bags and mine are nowhere! I have a business meeting tomorrow and all my clothes are in that bag!", response:"I'm so sorry this happened — I can see how urgent this is given your meeting tomorrow. Let me file a World Tracer report immediately. Based on the tag information, your bag was last scanned at [location]. We expect to locate and deliver it within 24 hours. In the meantime, I'm authorizing an emergency allowance for essential purchases — here is the claim form. I'll give you my direct contact and a reference number so you can track this personally.", policy:"Montreal Convention (1999): Airlines are liable for delayed baggage up to ~1,131 SDR (~USD 1,500). Property Irregularity Report (PIR) must be filed before leaving airport. Interim expense allowance applies when delay exceeds 24 hours. World Tracer system is the global baggage tracing database used by 98% of airlines.", tips:["File the PIR report immediately — claim validity depends on it","Give a direct callback number, not a call center number","Document the passenger's essential needs for the allowance"] },
+  { title:"Denied Boarding / Overbooking", type:"Ground", difficulty:"High", complaint:"I have a confirmed ticket and you're telling me there's no seat?! I've been bumped! This is illegal! I'll sue the airline!", response:"You're absolutely right to be upset — having a confirmed booking and being denied boarding is a serious matter and I sincerely apologize. I want to be fully transparent: our flight was overbooked. Here is what we owe you: full reimbursement of your ticket or rebooking on the next flight, which departs in [X] hours, plus compensation per our denied boarding policy. I'll process this right now and personally escort you to the priority lounge while you wait.", policy:"EU Regulation 261/2004 (international) / DOT rules: Involuntary denied boarding entitles passengers to 200% of one-way fare (max €650) if rebooked within 4 hrs, or 400% if later. Full refund option always available. Meal vouchers required during wait. Philippine CAB regulations mirror these protections for domestic routes.", tips:["Never downplay denied boarding — acknowledge it directly","Lead with entitlements, not apologies alone","Have supervisor present for all denied boarding situations"] },
+  { title:"Rude Crew Member Complaint", type:"Flight", difficulty:"Medium", complaint:"One of your flight attendants was incredibly rude to me when I asked for an extra blanket. She rolled her eyes and sighed! I want to make a formal complaint!", response:"Thank you for bringing this to my attention, and I sincerely apologize for the experience you had. Every passenger deserves respectful, warm service — no exceptions. Your feedback is important and will be formally documented and forwarded to our Cabin Crew Manager. I'm issuing you a customer care reference number. Would you be comfortable if I also offered you [miles/travel voucher] as a gesture of goodwill while the matter is reviewed?", policy:"Airline Service Standards Policy: All crew are bound by a code of professional conduct. Passenger complaints regarding crew behavior trigger a formal investigation under HR Conduct Review Policy. Complaints must be documented within 24 hours. Customer Relations must follow up within 7 business days.", tips:["Never defend or dismiss the crew behavior — acknowledge the feeling first","Do not promise disciplinary action, only that it will be reviewed","Always close with a goodwill gesture and a reference number"] },
+  { title:"Seat Recline Dispute", type:"Flight", difficulty:"Low", complaint:"The person in front of me reclined their seat the ENTIRE flight and I couldn't eat my meal! Your seats are practically on top of each other!", response:"I understand how uncomfortable that must have been, especially during meal service. Reclining seats is permitted on our aircraft, though crew are trained to ask passengers to restore seats during meal service. I'm sorry that didn't happen consistently this flight. I'll note your feedback about cabin comfort and seat pitch for our product team. As a gesture of appreciation for your patience, I'd like to offer [miles/voucher].", policy:"Seat recline is a passenger's right unless the seatbelt sign is on or during takeoff/landing. Crew Policy: cabin crew must request seats upright during meal service and assist with mediation in disputes. Aircraft configuration feedback is logged to the Product & Fleet team.", tips:["Mediate — don't take sides","Use meal service upright policy as the neutral standard","Offer a comfort upgrade on next flight if possible"] },
+  { title:"No Vegetarian Meal", type:"Flight", difficulty:"Low", complaint:"I specifically ordered a vegetarian meal weeks ago and now you're telling me there isn't one for me? I can't eat any of what you have!", response:"I'm truly sorry — a pre-ordered meal should absolutely be on board. Let me check with our galley team immediately. If unavailable, I will gather every vegetarian option available on this flight and put together the best possible arrangement for you. I'll also file a catering incident report and ensure our Customer Relations team contacts you with a gesture of goodwill and to confirm your meal preference is correctly locked for your return journey.", policy:"Special Meal Policy (SPML): Passengers with confirmed special meal bookings (VGML, HNML, DBML etc.) must receive their meal. Catering failures trigger a Catering Discrepancy Report (CDR). Airline is required to offer alternative and follow up with compensation per Service Recovery Guidelines.", tips:["Check the manifest before saying definitively it's not on board","Exhaust all on-board alternatives before apologizing for unavailability","Log it as a catering incident — accountability matters"] },
+  { title:"Baby Crying Complaint", type:"Flight", difficulty:"Low", complaint:"This is ridiculous! That baby has been screaming for 2 hours. Can't you do something? I paid business class prices for this!", response:"I completely hear you, and I appreciate your patience. I know this is far from the peaceful experience you were hoping for, especially in business class. I've already offered the family some assistance to help soothe the baby. Unfortunately we're not able to restrict passengers with infants from the cabin. What I can do is move you to another available business class seat further from the family, and I'll make sure your next drink is on us.", policy:"Infants and families cannot be moved or restricted from the cabin. However, crew must proactively offer assistance to distressed families and manage cabin comfort per Passenger Comfort Policy. Seat reallocation is permitted within the same cabin class based on availability.", tips:["Acknowledge without blaming the family","Proactive seat offer is your best tool","Use it as an opportunity to show premium service"] },
+  { title:"Wi-Fi Not Working", type:"Flight", difficulty:"Low", complaint:"I paid extra for in-flight Wi-Fi and it's completely broken! I had a video call I needed to join!", response:"I'm so sorry — that's incredibly frustrating when you've specifically paid for and planned around the Wi-Fi service. Unfortunately, we are experiencing a technical issue with the system on this flight that our crew cannot resolve in-air. I will process a full refund for your Wi-Fi charge, and I'd like to offer you [miles/voucher] for the inconvenience. I'll note your missed meeting in the incident report as well.", policy:"In-flight connectivity is sold as a best-effort service; however if the system is non-functional, a full refund of the Wi-Fi fee is mandatory. Incidents are logged to the IFE technical team. Customer Relations must offer service recovery credit.", tips:["Refund the Wi-Fi fee immediately — no debate","Don't over-promise future connectivity improvements","Acknowledge the business impact empathetically"] },
+  { title:"Emergency Exit Row Removal", type:"Ground", difficulty:"Medium", complaint:"I specifically chose and PAID for the exit row seat and now you're moving me because I'm too old? This is age discrimination!", response:"I understand your frustration, and I want to explain this sensitively. Safety regulations require that passengers seated in exit rows must meet specific physical and comprehension criteria — this is a federal safety requirement, not a personal judgment about you. I'm happy to move you to our best available seat in the same or adjacent row, and I'll refund the exit row fee in full. I can also speak with our supervisor if you'd like the regulation read to you directly.", policy:"CAAP / FAA Regulation: Exit row passengers must be 15+ years old, physically able to operate the door, able to follow crew instructions in English, and not traveling with a lap infant. Passengers not meeting criteria must be reseated. Full refund of exit row fee is mandatory. This is non-negotiable from a safety standpoint.", tips:["Frame it as safety, not personal judgment","Have the regulation ready — don't cite it from memory","Refund immediately and upgrade to best available window/aisle"] },
+  { title:"Flight Diverted", type:"Flight", difficulty:"High", complaint:"We just landed in the wrong city! I have a wedding to get to tonight and nobody is helping me understand what's happening!", response:"I know this feels chaotic right now and I want to give you clear information as quickly as possible. Our flight was diverted to [city] due to [weather/emergency]. Our crew is working directly with ground operations to arrange transportation back to [original destination]. The current timeline is [X]. I'm going through the cabin right now to give every passenger a diversion information sheet with next steps and our care desk number. You won't be left without a way forward.", policy:"Diversion Policy: The airline must provide ground transportation or next available flight to original destination at no cost. Meal vouchers apply if wait exceeds 3 hours. Hotel accommodation if overnight. All passengers must be given written information on their rights and next steps per CAAB regulations.", tips:["Information is the #1 need — provide it constantly","Assign a single point of contact for every passenger","Don't speculate on timelines you're not certain of"] },
+  { title:"Armrest Dispute", type:"Flight", difficulty:"Low", complaint:"The passenger next to me has taken BOTH armrests and is elbowing me the whole flight! Do something!", response:"I appreciate you flagging this — I'll address it right away. [Privately to neighboring passenger]: Excuse me, I just want to make sure everyone in this row is comfortable for the flight. Could I ask you to be mindful of sharing the center armrest? Thank you so much. [Return]: I've spoken with them — if there are any further issues please press the call button immediately. Let me also check if there are any open seats I can offer you.", policy:"No formal armrest policy exists in IATA, but Cabin Service Policy requires crew to mediate passenger disputes and maintain a safe, comfortable environment. Crew should not take sides but facilitate a fair resolution. Seat reallocation is the preferred resolution tool.", tips:["Address the other passenger privately — not in front of the complainant","Don't make the complaint passenger feel 'tattled on'","Always have a seat reallocation offer ready"] },
+  { title:"Passport Control Wait Caused Missed Connection", type:"Ground", difficulty:"Medium", complaint:"Your ground staff kept us on the plane for 45 minutes after landing and now immigration queues are massive! You made us miss our connection!", response:"I sincerely apologize — the deplaning delay was caused by [reason] and I understand the ripple effect that has on your schedule. Let me check your connection right now. If missed: I'm going to get you to our rebooking desk immediately — you are our priority. If still catchable: We have a flight bridge priority pass — please follow me and I'll escort you through. Your checked bags have been flagged for transfer.", policy:"Missed Connection due to Airline Delay: Full rebooking at no charge on next available flight. If hotel required, accommodation provided. Airline has duty of care from wheels-down to passenger clearing the terminal. Ground Operations must coordinate with Immigration when delays are foreseeable.", tips:["Move fast — time is the issue here","Escort physically, don't just direct","Flag bags proactively without being asked"] },
+  { title:"Broken Entertainment Screen", type:"Flight", difficulty:"Low", complaint:"My entertainment screen has been broken the whole 10-hour flight! I've been sitting here bored for hours and nobody fixed it!", response:"I'm truly sorry this happened — a 10-hour flight without entertainment is genuinely rough and we should have caught this sooner. I'm refunding your IFE-included fee (if applicable) and I'd like to offer you [miles/voucher] for the experience. Our tech team will receive a report on this seat. I'll also check if we have any tablets available to loan for the remainder of the flight.", policy:"IFE Failure Compensation: If IFE is included as a fare feature and fails, Service Recovery Guidelines require a goodwill gesture. Loan tablets (where available) must be offered. IFE faults are logged to the Maintenance team (MEL — Minimum Equipment List) for repair at next port.", tips:["Acknowledge the duration of discomfort specifically","Proactively offer before being asked","Never say 'the system is just old' — it undermines confidence"] },
+  { title:"Wheelchair Assistance Missing", type:"Ground", difficulty:"High", complaint:"I requested wheelchair assistance and nobody was there when we landed! My mother can barely walk and we've been standing here for 20 minutes!", response:"I am so sorry — this should never have happened. Please let me get assistance for your mother immediately. [Radio for wheelchair now.] I'll personally stay with you until she's comfortably seated and we'll take you through priority processing. I'll be filing an SSR (Special Service Request) failure report so this is escalated to our accessibility team. You will receive a formal apology and goodwill gesture from our Customer Relations team.", policy:"CAAP Regulation & EU 1107/2006: PRM (Persons of Reduced Mobility) assistance is a legal right, not a courtesy. Failure to provide pre-requested wheelchair assistance is a regulatory breach. Ground handlers must be notified 48h prior and on arrival. Service failures must be reported and compensated.", tips:["Act first — apologize and explain after","Never leave the passenger standing while you make calls","SSR failures are regulatory issues — escalate formally"] },
+  { title:"Cargo Fee Dispute", type:"Ground", difficulty:"Medium", complaint:"Why am I being charged for my sports equipment? Your website said it's free! I have a screenshot!", response:"Thank you for showing me that. Let me review the screenshot and check our current policy. If this was published on our website at the time of booking and it conflicts with what we're charging today, I want to make this right — I'll escalate this to my supervisor to authorize a waiver. If the policy changed, I'll also raise it to our digital team as a communication issue. You shouldn't be penalized for following our published information.", policy:"Consumer Protection Policy: Advertised fares and ancillary policies bind the airline if published at time of booking. Website screenshots with timestamps are valid documentation. Revenue/Check-in supervisors can authorize fee waivers in cases of website misinformation.", tips:["Believe the passenger, investigate first","Screenshots with dates are powerful — treat them seriously","When in doubt, escalate to waive — goodwill beats a baggage fee"] },
+  { title:"Unaccompanied Minor — Delay in Handover", type:"Ground", difficulty:"High", complaint:"My 9-year-old is supposed to land now and nobody is answering the UM desk! Where is my child?!", response:"I hear you — nothing is more urgent than this. I'm pulling up the UM record for your child right now. Your child is safe — [on the aircraft / in our UM lounge / with the escort team]. Here is the direct line to our UM escort — I'll stay on the phone with you until you've spoken with them. I'm escalating to our Station Manager and UM supervisor right now.", policy:"IATA Unaccompanied Minor Policy: All UMs must have an assigned escort from check-in to handover to authorized guardian. UM desk must be staffed and reachable during all flight arrival windows. Communication to waiting guardians is mandatory. Any lapse in UM escort chain is a Category 1 safety incident.", tips:["This is a safety emergency — treat it with maximum urgency","Never leave the parent without real-time information","Escalate to Station Manager immediately — not a front-line resolution"] },
+  { title:"Medical Emergency Response Complaint", type:"Flight", difficulty:"High", complaint:"I had a panic attack on the flight and the crew barely helped me. Now I want compensation for the trauma!", response:"I'm so sorry you experienced a medical episode during the flight — that must have been frightening. Our crew is trained in first aid and should have responded promptly and with care. I'd like to understand more about what happened so I can ensure it's properly documented. You have every right to submit a formal complaint, and I'll provide you with our Medical & Customer Experience complaint form. Our medical response team will review the crew's actions against our Medical Response Protocol.", policy:"Aviation Medical Response Protocol: Crew must respond to all medical episodes, access the MedKit, offer oxygen if needed, and contact MedLink or on-ground medical advisory. Passengers who feel inadequately treated may submit a formal service complaint. Compensation is case-by-case and reviewed by Medical + Legal teams.", tips:["Listen fully before any defensive response","Document everything the passenger tells you","Do not admit liability — guide them to the formal complaints process"] },
+  { title:"Frequent Flyer Miles Not Credited", type:"Ground", difficulty:"Low", complaint:"I flew 4 flights this month and NONE of my miles posted! I'm about to hit Gold status and this is ruining it!", response:"I completely understand — your miles are valuable and should post automatically. Let me pull up your account and the flight records now. I can see your flights from [dates]. I'll submit a manual retro-credit request for all four journeys today — processing takes 3–5 business days. Because of the inconvenience and the potential status impact, I'm also flagging this to our Loyalty team for a status review to ensure your tier isn't affected.", policy:"Loyalty Program Retro-Credit Policy: Members may request manual credit for up to 12 months of missing miles. Required documents: boarding passes or booking confirmations. Processing: 5–7 business days standard, 24–48 hours expedited for status-impacting cases. Tier qualification disputes escalated to Loyalty Resolutions team.", tips:["Validate their frustration — miles have real value","Submit all four retro-credits at once, not one at a time","Flag status impact proactively — don't wait for them to ask"] },
+  { title:"Tarmac Wait — Extreme Heat", type:"Ground", difficulty:"High", complaint:"We've been sitting on the tarmac for 90 minutes in this heat! There's no air conditioning and I'm with elderly passengers! This is a health risk!", response:"You are absolutely right — this situation is not acceptable and I'm escalating to our Operations Center immediately. Crew must activate supplemental ventilation and the Captain should update passengers every 15 minutes. If the delay extends further, our regulations require us to return to the gate. I'm also calling for medical staff to check on any passengers who feel unwell. Thank you for alerting us.", policy:"DOT Tarmac Delay Rule (3-hour domestic, 4-hour international): Airlines must provide ventilation, water, lavatories, and medical assistance during tarmac delays. Failure to comply results in significant DOT fines. CAAB equivalent applies to Philippine carriers. Crew must report conditions to Captain who has authority to return to gate.", tips:["Health safety trumps operational delays","Captain has authority to return to gate — support this decision","Water distribution and medical check are mandatory, not optional"] },
+  { title:"Name Error on Ticket", type:"Ground", difficulty:"Medium", complaint:"Your system misspelled my name and now you're saying I can't board because my passport doesn't match! I'll miss my flight!", response:"Let me look at this right away — time is critical. [Review ticket vs passport.] This appears to be a minor name discrepancy. Per our Name Correction Policy, I can process a same-day name correction for discrepancies of up to 3 characters at no charge. I'll do this now so we can get you to the gate. If it's a more significant change, I'll escalate to my supervisor for immediate authorization.", policy:"IATA Ticketing Resolution 722f: Minor name corrections (up to 3 characters, same phonetics) are permitted without rebooking. Must be corrected at check-in by authorized agent. Major name changes require supervisor approval and may involve fare reissue. Immigration requires ticket name to substantially match passport.", tips:["Act fast — every minute counts at the gate","Know the 3-character rule — it's your best friend here","Confirm the corrected ticket prints before releasing the passenger"] },
+  { title:"Alcohol Service Cutoff", type:"Flight", difficulty:"Medium", complaint:"Your flight attendant refused to serve me another drink and I wasn't even drunk! This is humiliating in front of other passengers!", response:"I hear you, and I'm sorry this felt embarrassing. Our crew makes these decisions based on safety regulations and passenger wellbeing — it's never a personal judgment. Our policy requires cabin crew to use their professional discretion on alcohol service, and their decisions are final in-flight. What I can do is offer you [alternative beverages] and I'll speak with the crew privately to ensure the conversation was handled respectfully. If you'd like to raise a formal concern, I can provide our customer care details.", policy:"Cabin Crew Authority (Air Navigation Order): Crew have final authority on in-flight safety decisions, including alcohol service. No passenger has an automatic right to alcohol in-flight. Crew follow the 3+ drink assessment protocol. Disciplinary matters against crew for manner (not the decision) may be reviewed post-flight.", tips:["Support the crew's decision — always","Redirect the complaint to manner, not substance","Offer premium non-alcoholic alternatives immediately"] }
+];
+
+const fb = [
+  { title:"Hair in Food", type:"Restaurant", difficulty:"High", complaint:"There is a HAIR in my pasta! This is absolutely disgusting. I want a full refund and I'm posting this on social media right now!", response:"I'm so sorry — please let me take that plate immediately. Finding a foreign object in your meal is completely unacceptable and I take full responsibility on behalf of our kitchen. I'm removing this dish from your bill entirely, and I'd love to prepare you anything else from our menu, completely on the house. Our kitchen team will be informed immediately. I'd also like to speak with our Chef personally to ensure our hygiene protocols are reinforced today.", policy:"FDA Food Code & Restaurant Hygiene SOP: All food handlers must wear hair nets/caps. Foreign objects in food trigger a Hygiene Incident Report filed with the Kitchen Manager. Guest's meal is automatically comped. If guest refuses replacement, full table bill may be comped at manager discretion. Repeated incidents trigger HACCP review.", tips:["Remove the plate immediately without debate","Don't be defensive — own it completely","Offer replacement, comp the dish, alert the kitchen — in that order"] },
+  { title:"Long Wait Time", type:"Restaurant", difficulty:"Medium", complaint:"We've been waiting for 45 minutes for our food! It's a Tuesday afternoon — the restaurant is half empty! I want to speak to a manager!", response:"Thank you for your patience and I sincerely apologize — 45 minutes is far too long for your wait time, especially today. Let me check on your order immediately. [Check with kitchen.] Your dishes are plating now and will be out in under 5 minutes. While you wait, I'd like to offer you complimentary [drinks/starter/dessert] for the inconvenience. The delay was caused by [honest reason] and I'm sorry we didn't communicate sooner.", policy:"Service Standard Policy: Food delivery targets — starters 10–15 min, mains 20–25 min. Delays beyond 15 min over target require proactive guest communication and a service recovery offer. Manager must be informed of waits over 30 min. Unexplained kitchen delays must be investigated.", tips:["Never say 'the kitchen is backed up' without explanation","Check first, then speak — know the ETA before you return","Honesty + a complimentary gesture = the fastest recovery"] },
+  { title:"Wrong Order Delivered", type:"Restaurant", difficulty:"Medium", complaint:"This isn't what I ordered at ALL! I ordered the salmon and you've brought me chicken. I'm vegetarian — I can't eat this!", response:"I'm so sorry — I'll take this back immediately. I want to make sure your salmon is prepared urgently and correctly. I'll personally communicate your order to the kitchen and will bring it out myself. While you wait, please enjoy this [appetizer/bread basket] with our compliments. Your salmon will take approximately [X] minutes and I'll keep you updated.", policy:"Order Accuracy SOP: Servers must verbally confirm orders at the table before submitting. Wrong dishes are replaced at no charge with priority kitchen re-queue. If the error involved an allergen, the Allergen Incident Protocol is triggered — note dietary restrictions on the re-order ticket. Comping the wrong dish is mandatory.", tips:["Remove the wrong dish immediately — don't leave it on the table","If there's an allergen concern, escalate to the chef directly","Confirm the corrected order verbally before going to the kitchen"] },
+  { title:"Allergic Reaction Complaint", type:"Restaurant", difficulty:"High", complaint:"I specifically told your server I'm allergic to nuts and my dessert clearly has nuts in it! My lips are swelling — do you even take allergies seriously?!", response:"This is our top priority right now — is your epi-pen available? Do you need me to call emergency services? Please tell me how you're feeling right now. [If medical attention needed — call emergency services immediately.] I am so deeply sorry. Our Allergen Protocol failed and I take full responsibility. Our manager and chef will be with you in seconds. We will do everything necessary to support you right now — your health comes first.", policy:"FDA Allergen Labeling & Restaurant Allergen Protocol: The 9 major allergens must be flagged on menus and communicated to kitchen via allergen ticket. An allergen incident is a Category 1 safety event — EMS must be offered, an Allergen Incident Report filed, and the matter reviewed by the Food Safety Officer within 24 hours.", tips:["Health first — everything else is secondary","Do NOT offer another dish until medical situation is resolved","Document everything — this may become a legal matter"] },
+  { title:"Undercooked Food", type:"Restaurant", difficulty:"High", complaint:"This chicken is completely raw in the middle! Are you trying to give me food poisoning?! I've already taken a bite!", response:"Please stop eating immediately — I'm taking this plate right now. I am so sorry. A raw chicken dish should never have left our kitchen. I'll have our Chef inspect it immediately and we'll prepare your replacement with full attention to doneness. Your meal is completely on us today. If you experience any discomfort in the hours following, please contact us directly and we'll refer you to our Food Safety team. Your wellbeing is our priority.", policy:"HACCP: Poultry must reach internal temperature of 74°C (165°F). An undercooked protein incident triggers a Kitchen Inspection and Chef Remediation Protocol. The dish must be logged and a Food Safety Report filed. Guest must be given emergency contact details in case of food-related illness.", tips:["Stop further consumption immediately — safety first","Don't return raw food to the kitchen silently — flag it to the chef","Provide written contact details for follow-up — demonstrates accountability"] },
+  { title:"Noisy Table Nearby", type:"Restaurant", difficulty:"Low", complaint:"The table next to us is so loud we can't hear each other! This is a fine dining restaurant, not a sports bar! Do something!", response:"I apologize for the disturbance — I understand this isn't the atmosphere you expected. Let me see what I can do. I'll first check if we have a quieter table available to offer you a comfortable move. If you'd prefer to stay, I'll speak discreetly with the neighboring table about the noise level. Fine dining should be a peaceful experience and I'll do my best to restore that for you.", policy:"Guest Experience SOP: Noise complaints fall under Comfort Resolution Protocol. Staff may politely ask loud guests to moderate volume once — only once, respectfully. Table reallocation is the primary tool. Escalation to manager is required if guest refuses or if the situation escalates. Eviction of disruptive guests is a last resort requiring manager authorization.", tips:["Offer a table move before confronting the loud table","Approach the loud table privately and politely","Never frame the noisy table as 'bad customers' to the complainant"] },
+  { title:"Cold Food Complaint", type:"Restaurant", difficulty:"Medium", complaint:"My steak is cold! It arrived cold! Why is it taking forever for food to get hot to the table?", response:"I'm very sorry — a steak must arrive piping hot and yours clearly didn't. Let me take it back to the kitchen immediately for a proper reheat or fresh preparation — whichever you prefer. I'll also speak with our expediter to understand what happened in the pass. This time, I'll hand-carry it from the kitchen myself to ensure it arrives at the right temperature. Complimentary [side dish/drink] for the wait.", policy:"Food Temperature SOP: Hot dishes must be served at a minimum of 60°C (140°F). Cold delivery triggers a Pass-Through Failure report. Dishes must be replated or reheated to standard before returning to the guest. Cold food complaints are tracked monthly and above-threshold rates trigger kitchen process review.", tips:["Always give the guest the choice: reheat or fresh","Address the root cause internally after resolution","Personal delivery of the corrected dish shows commitment"] },
+  { title:"Overcharged on Bill", type:"Restaurant", difficulty:"Medium", complaint:"You've charged me twice for the wine! And there are items on this bill I didn't order! This is fraud!", response:"Thank you for flagging this — let me review your bill alongside the order ticket right now. [Review carefully.] I can see that [wine appears twice / item X was incorrectly added]. I'm correcting this immediately and re-printing your bill. I'm sorry for the error and for any suggestion of intentional overcharging — this was a system/entry error and I'll raise it with our billing team. I'll also offer a small discount for the inconvenience.", policy:"Billing Accuracy Policy: All bills must match the table's order ticket. Disputed items must be reviewed and corrected immediately — no guest should ever be required to pay for items they did not order. Billing errors are logged and reviewed by the Cashier Supervisor. Repeated errors trigger POS Audit.", tips:["Never be defensive about billing errors","Compare bill to kitchen ticket, not just memory","Correct AND apologize — don't make them choose which to accept"] },
+  { title:"Dirty Utensils / Glasses", type:"Restaurant", difficulty:"Medium", complaint:"These wine glasses have lipstick marks on them! I can see the watermarks on all the cutlery! Your dishwashing is appalling!", response:"I'm deeply sorry — this is not acceptable. Let me replace all your glassware and cutlery immediately with fresh sets. Our glasswasher standard clearly wasn't met today. I'll alert our stewarding team right now and personally ensure your replacements are spotless. Please accept a complimentary glass of wine as an apology while I set you up properly.", policy:"Stewarding & Warewashing SOP: All glassware must pass a 3-point inspection (no marks, chips, odor) before being set. Guest complaints about dirty serviceware trigger a Stewarding Audit for that wash cycle. Chipped or cracked glassware must be discarded immediately (food safety hazard).", tips:["Replace everything — don't just swap the specific item complained about","Physical replacement is faster than explanation","Inform stewarding team quietly — accountability in the kitchen matters"] },
+  { title:"Reservation Not Found", type:"Restaurant", difficulty:"High", complaint:"I made a reservation two weeks ago for my anniversary dinner and you're telling me you have NO record of it! This is our anniversary!", response:"I'm so sorry — this should not have happened, and I can imagine how devastating this feels on such a meaningful occasion. Let me check all our booking channels right now. Regardless of what happened, I am not going to turn you away tonight. Let me see what I can do — I can prepare a priority table for you. It may be [X] minutes and while you wait, please enjoy drinks and an amuse-bouche at our bar, with our compliments. Tonight will be special.", policy:"Reservation Management Policy: All reservations must be confirmed via email/SMS and logged in the central POS/booking system. Booking errors do not release the restaurant from hosting responsibility. Walk-in priority accommodation is required in cases of confirmed booking loss. Management must personally attend to the guest.", tips:["Never argue about whether the booking existed","Make the commitment to host them tonight, then solve the seating","Turn a recovery into a memory — proactive special occasion touches go far"] },
+  { title:"Portion Size Complaint", type:"Restaurant", difficulty:"Low", complaint:"This is a ridiculous portion for the price! The pasta on the plate is smaller than my fist! I could eat 3 of these!", response:"Thank you for the feedback — portion satisfaction is important to us. Our portions are designed around balanced dining rather than volume, but I hear you and your experience matters. I'd like to offer you a complimentary additional starter or side to round out your meal. I'll also pass your feedback to our Chef and Food & Beverage Manager, as portion sizing is something we review regularly.", policy:"Menu Engineering Policy: Portion sizes are set by the Chef and approved by the F&B Manager based on nutritional balance and food cost. Guest feedback on portion perception is logged and reviewed quarterly. Complimentary sides as a service recovery gesture are within server supervisor authority.", tips:["Don't argue about value — acknowledge the perception","A complimentary side is low-cost and highly effective","Avoid promising a portion change you can't deliver"] },
+  { title:"Slow Service During Peak Hours", type:"Restaurant", difficulty:"Medium", complaint:"We've been completely ignored for 20 minutes! No water, no bread, nothing! Your servers are running past us like we're invisible!", response:"I'm so sorry — you should never feel invisible at our restaurant. I'm bringing your water and bread right now and I'll be your dedicated server for the rest of your meal. We are at peak capacity today and our communication broke down — that's our failure, not yours. Let me take your full order now and I'll personally ensure everything comes out promptly. Complimentary starter while you wait.", policy:"Service Timing Standard: A server must make first contact with any table within 3 minutes of seating. Water must be presented within 5 minutes. During peak hours, a 'table captain' must be assigned to ensure no table is neglected. Manager must be notified of any guest ignored for 15+ minutes.", tips:["Come to the table with water and bread in hand, not empty-handed","Own the failure of the whole team, not just one server","Assign yourself to them for the rest of the meal — follow through"] },
+  { title:"Menu Item Not Available", type:"Restaurant", difficulty:"Low", complaint:"I've been looking forward to the wagyu burger ALL week — it's why I came here — and you're telling me you're out?! Then why is it still on the menu?!", response:"I completely understand your disappointment — you came for something specific and that's a letdown. I'm sorry the menu wasn't updated to reflect tonight's availability. Let me tell you about our most comparable option: our [Black Angus burger / dry-aged beef dish] is [description]. If it's not the same, I'd like to offer it at the price of the wagyu as an apology. And I'll bring your feedback about the menu to our team so we update it in real time.", policy:"86 List & Menu Availability Policy: Items that are sold out must be immediately marked on the '86 list' and communicated to all servers. Servers must proactively inform new guests of unavailable items. Digital menus must be updated by the FOH Manager within 15 minutes of an item becoming unavailable.", tips:["Acknowledge the anticipation they had — it matters","Lead the alternative with enthusiasm and a genuine description","Matching the price of the unavailable item is a powerful gesture"] },
+  { title:"Hygiene of Staff", type:"Restaurant", difficulty:"High", complaint:"Your server handled my food with bare hands — no gloves — and I could see they weren't wearing a hairnet in the kitchen. This is a health code violation!", response:"Thank you for bringing this to my attention immediately. Food safety is our highest priority and what you described, if accurate, is a serious concern. I'm going to speak with our Kitchen Manager right now. In the meantime, I'd like to replace any dishes that may have been affected. Our food handlers are required to follow strict hygiene protocols and I take this report seriously. I'll personally ensure a hygiene check is conducted in the kitchen right now.", policy:"FDA Food Code / DOH Food Safety Act (RA 10611): Food handlers must wear appropriate PPE — gloves when handling ready-to-eat food, hairnets in kitchen. Violations are grounds for corrective action. A Food Safety Incident Report must be filed. Guest's affected dishes must be comped.", tips:["Take the complaint to the kitchen immediately — visibility signals seriousness","Comp the affected dishes without argument","A formal incident report protects both the guest and the restaurant"] },
+  { title:"Loud Music", type:"Restaurant", difficulty:"Low", complaint:"The music is so loud I can't hear my own family talking! We're trying to have a dinner conversation and it sounds like a nightclub!", response:"I completely understand — our music levels should enhance, not compete with, your dining experience. I'll speak with our floor manager about reducing the volume right now. [Reduce music.] Our target ambience for dinner service is conversational — I'm sorry it crossed that line. Is that level better for you? Thank you for letting us know.", policy:"Ambience Management SOP: Dining music should not exceed 70–75 dB during dinner service. FOH Manager or a designated Host controls the sound system. Guest noise complaints require immediate volume adjustment. Venue has a 'comfort first' standard.", tips:["Fix it immediately — this is the fastest resolution in F&B","Don't negotiate the volume — adjust it and ask if it's better","Check the decibel levels periodically — don't wait for complaints"] },
+  { title:"Corked Wine", type:"Restaurant", difficulty:"Medium", complaint:"This bottle of wine tastes like wet cardboard! I think it's corked and your sommelier told me it's fine — he doesn't know wine!", response:"I'm sorry for the disagreement — let me taste this alongside you. [Taste the wine.] I agree that there is a presence here that may indicate TCA (cork taint). I'll replace this bottle immediately with a fresh one from a different case. If you'd like our sommelier to present an alternative recommendation, I'll ensure that conversation is handled with greater sensitivity. The replacement bottle is on us.", policy:"Wine Service Policy: Corked/faulty wine (TCA — 2,4,6-Trichloroanisole) must be replaced without charge upon reasonable guest complaint. Sommeliers must taste before serving and must respect the guest's palate feedback. Defective bottles are returned to the supplier for credit. Sommelier conduct complaints are reviewed by the F&B Manager.", tips:["Taste the wine yourself — do not simply trust the sommelier over the guest","Replace from a different case position, not the same bottle run","Cork taint: musty/wet cardboard aroma is a real, verifiable defect"] },
+  { title:"Refused Entry — Dress Code", type:"Restaurant", difficulty:"Medium", complaint:"Your doorman just humiliated me in front of everyone because of my shoes! I wasn't wearing sneakers — these are designer slides! This is discrimination!", response:"I'm sorry for the experience at the door — being turned away publicly is uncomfortable and I understand your frustration. Our dress code policy is [smart casual/formal] and I'd like to walk you through what it covers. If our staff was unclear or inconsistent in applying it, that's a training issue we need to address. If you have a blazer or we have loaner items available, I'd love to find a way to have you dine with us tonight. If not, I'd like to offer you a future reservation with any dress code questions answered in advance.", policy:"Dress Code Policy: Must be clearly stated on website, reservation confirmation, and at venue entrance. Enforcement must be consistent and applied equally to all guests. Staff may not use dress code to discriminate on any protected basis. Inconsistent enforcement is a liability. Management must review door decisions when escalated.", tips:["Never double down on the door staff's decision without reviewing it","Have loaner jackets/items at premium venues","Acknowledge the public nature of the rejection — that part always needs a separate apology"] },
+  { title:"Bill Split Dispute", type:"Restaurant", difficulty:"Low", complaint:"Your POS system can't split the bill properly and now your cashier is telling me I owe MORE than I ordered! This is the third time I've been overcharged here!", response:"I'm sorry for the confusion and frustration — especially if this has happened before. Let me pull up each item and go through this with you line by line. [Review carefully.] I can see the discrepancy — I'll correct this immediately. For split bills, I'll manually assign items to ensure accuracy rather than relying on automatic splitting. Moving forward, I'd like to note your preference for separate bills from the start of your next visit.", policy:"Billing SOP: Split bill requests must be honored. Servers must clarify split preferences at the start of the meal. POS-generated splits must be verified against individual orders. Any overcharge identified must be corrected before payment is accepted. Repeat billing complaints trigger a cashier retraining review.", tips:["Go line by line — speed feels dismissive here","Note the preference for next time in the reservation system","Apologize for the pattern, not just this instance"] },
+  { title:"Customization Request Ignored", type:"Restaurant", difficulty:"Medium", complaint:"I asked for no onions three times! I have IBS and onions cause me serious pain. The kitchen ignored me completely! I can see onions in this dish!", response:"I'm so sorry — this should have been caught and I take full responsibility. Please let me take this back immediately. I'm going back to the kitchen personally and will stand there while your dish is remade without onions. Given the medical nature of your request, I'll have the Chef sign off on the plate before it leaves the kitchen. Your remade dish will be our priority. Thank you for telling me — your health was on the line here and we failed you.", policy:"Dietary Modification SOP: All dietary modifications must be entered on the order ticket with a clear flag. The kitchen must acknowledge modifications before preparing the dish. Modifications involving health conditions (IBS, Crohn's, allergies) are classified as medical dietary needs and treated under the Allergen Protocol. Three-level confirmation: server → ticket → kitchen verbal confirmation.", tips:["Medical dietary needs = allergen-level urgency","Stand in the kitchen for the remake — your presence signals the seriousness","Ask the guest to describe any other dietary needs before the replacement arrives"] },
+  { title:"Pest Sighting", type:"Restaurant", difficulty:"High", complaint:"There is a COCKROACH crawling across our table! I am absolutely disgusted and I'm calling the health department right now!", response:"I am so sorry — please let me move you to another table immediately. [Move guests away from the area.] This is unacceptable and I want you to know we take this with absolute seriousness. I'm alerting our Manager and Pest Control team right now. Tonight's meal is entirely on the house. I will personally file a pest incident report and our licensed pest control contractor will inspect and treat the premises within 24 hours. Thank you for letting us know.", policy:"Pest Control & Food Safety Act (RA 10611): Restaurants must have a licensed pest control program with documented monthly treatments. A pest sighting constitutes a Food Safety Incident and must be reported to the Food Safety Officer immediately. The affected area must be inspected and treated. DOH may conduct an unannounced inspection. Guest's full meal is comped; management must personally attend.", tips:["Remove guests from the area immediately — their comfort is the first priority","Don't debate or minimize what they saw","Full comping plus a follow-up call the next day demonstrates genuine accountability"] }
+];
+
+let currentTab = 'airline';
+let openCards = new Set();
+let viewedCards = new Set();
+let searchTerm = '';
+let diffFilter = 'all';
+
+function switchTab(tab) {
+  currentTab = tab;
+  openCards = new Set();
+  searchTerm = '';
+  diffFilter = 'all';
+  document.getElementById('search-input').value = '';
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.filter-pill')[0].classList.add('active');
+  document.getElementById('tab-airline').classList.toggle('active', tab === 'airline');
+  document.getElementById('tab-fb').classList.toggle('active', tab === 'fb');
+  render();
+  updateStats();
+}
+
+function handleSearch(val) { searchTerm = val.toLowerCase(); render(); }
+
+function setFilter(val, el) {
+  diffFilter = val;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function toggleCard(i) {
+  if (openCards.has(i)) { openCards.delete(i); }
+  else {
+    openCards.add(i);
+    viewedCards.add(currentTab + '-' + i);
+  }
+  updateStats();
+  render();
+}
+
+function resetProgress() {
+  viewedCards = new Set();
+  openCards = new Set();
+  updateStats();
+  render();
+}
+
+function updateStats() {
+  const data = currentTab === 'airline' ? airline : fb;
+  const total = data.length;
+  const viewed = [...viewedCards].filter(k => k.startsWith(currentTab)).length;
+  const pct = total > 0 ? Math.round((viewed / total) * 100) : 0;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-viewed').textContent = viewed;
+  document.getElementById('stat-remaining').textContent = total - viewed;
+  document.getElementById('stat-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label-left').textContent = viewed + ' of ' + total + ' reviewed';
+  document.getElementById('prog-label-right').textContent = pct + '%';
+}
+
+function esc(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function render() {
+  const data = currentTab === 'airline' ? airline : fb;
+  const filtered = data.map((s, i) => ({ s, i })).filter(({ s }) => {
+    const matchSearch = !searchTerm || s.title.toLowerCase().includes(searchTerm) || s.type.toLowerCase().includes(searchTerm) || s.complaint.toLowerCase().includes(searchTerm) || s.difficulty.toLowerCase().includes(searchTerm);
+    const matchFilter = diffFilter === 'all' || s.difficulty === diffFilter;
+    return matchSearch && matchFilter;
+  });
+
+  const list = document.getElementById('scenario-list');
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div>No scenarios match your search.</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(({ s, i }) => {
+    const isOpen = openCards.has(i);
+    const isViewed = viewedCards.has(currentTab + '-' + i);
+    const pillClass = s.difficulty === 'High' ? 'pill-high' : s.difficulty === 'Medium' ? 'pill-medium' : 'pill-low';
+    return `<div class="card ${isOpen ? 'open' : ''} ${isViewed ? 'viewed' : ''}" id="card-${i}">
+      <div class="card-header" onclick="toggleCard(${i})" role="button" aria-expanded="${isOpen}" tabindex="0">
+        <div class="card-num">${isViewed ? '✓' : (i + 1)}</div>
+        <div class="card-info">
+          <div class="card-title">${esc(s.title)}</div>
+          <div class="pills">
+            <span class="pill pill-type">${esc(s.type)}</span>
+            <span class="pill ${pillClass}">${esc(s.difficulty)}</span>
+          </div>
+        </div>
+        <span class="card-chevron">▾</span>
+      </div>
+      ${isOpen ? `<div class="card-body">
+        <div class="section">
+          <div class="section-label karen">😤 Karen says</div>
+          <div class="karen-box">"${esc(s.complaint)}"</div>
+        </div>
+        <div class="section">
+          <div class="section-label response">💬 Model response</div>
+          <div class="response-box">${esc(s.response)}</div>
+        </div>
+        <div class="section">
+          <div class="section-label policy">📋 Policy & regulation</div>
+          <div class="policy-box">${esc(s.policy)}</div>
+        </div>
+        <div class="section">
+          <div class="section-label tips">💡 Pro tips</div>
+          <ul class="tips-list">${s.tips.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        </div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.classList.contains('card-header') && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    e.target.click();
+  }
+});
+
+render();
+updateStats();
+</script>
+</body>
+</html>
